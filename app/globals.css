@@ -53,6 +53,12 @@
   * {
     @apply border-border;
   }
+  
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* Altura do header fixo + margem */
+  }
+  
   body {
     @apply bg-background text-foreground;
   }

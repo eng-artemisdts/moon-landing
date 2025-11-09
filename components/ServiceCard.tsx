@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -37,8 +37,18 @@ export function ServiceCard({
   priceRange,
   idealFor,
 }: ServiceCardProps) {
+  const [open, setOpen] = useState(false);
+
+  const handleContactClick = () => {
+    setOpen(false);
+    // Pequeno delay para garantir que o modal feche antes do scroll
+    setTimeout(() => {
+      document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  };
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <div className="border-white/10 bg-black hover:bg-white/5 transition-all group h-full flex flex-col">
         <div className="p-6 flex-1 flex flex-col">
           <div className="mb-4 group-hover:scale-110 transition-transform">
@@ -174,17 +184,17 @@ export function ServiceCard({
             </p>
             <div className="flex gap-3">
               <Button
-                asChild
+                onClick={handleContactClick}
                 className="flex-1 bg-white text-black hover:bg-gray-200"
               >
-                <a href="#contato">Solicitar Orçamento</a>
+                Solicitar Orçamento
               </Button>
               <Button
-                asChild
+                onClick={handleContactClick}
                 variant="outline"
                 className="flex-1 border-white/20 text-white hover:bg-white hover:text-black"
               >
-                <a href="#contato">Tirar Dúvidas</a>
+                Tirar Dúvidas
               </Button>
             </div>
           </div>

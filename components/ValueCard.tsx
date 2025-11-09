@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -29,8 +29,18 @@ export function ValueCard({
   benefits,
   examples,
 }: ValueCardProps) {
+  const [open, setOpen] = useState(false);
+
+  const handleContactClick = () => {
+    setOpen(false);
+    // Pequeno delay para garantir que o modal feche antes do scroll
+    setTimeout(() => {
+      document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  };
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <div className="p-8 bg-white/5 rounded-2xl border border-white/10 hover:border-white/30 transition-all group relative">
         <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
           {icon}
@@ -114,10 +124,10 @@ export function ValueCard({
               Quer saber como aplicamos {title.toLowerCase()} no seu projeto?
             </p>
             <Button
-              asChild
+              onClick={handleContactClick}
               className="w-full mt-3 bg-white text-black hover:bg-gray-200"
             >
-              <a href="#contato">Entre em Contato</a>
+              Entre em Contato
             </Button>
           </div>
         </div>
