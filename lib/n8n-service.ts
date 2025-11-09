@@ -6,7 +6,7 @@
 // URL do webhook - pode ser configurada via variável de ambiente
 const N8N_WEBHOOK_URL = 
   process.env.N8N_WEBHOOK_URL || 
-  'https://n8n-n8n.kltkek.easypanel.host/webhook-test/lead';
+  'hhttps://n8n-n8n.kltkek.easypanel.host/webhook/lead';
 
 /**
  * Enum para faixas de orçamento
