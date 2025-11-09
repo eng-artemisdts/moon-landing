@@ -43,10 +43,10 @@ export default function Home() {
           <div className="flex items-center space-x-3">
             {/* Logo SVG */}
             <Image
-              src="/assets/logo.svg"
+              src="/assets/logo-reduced.svg"
               alt="Artemis Digital Solutions"
-              width={120}
-              height={150}
+              width={30}
+              height={30}
             />
           </div>
           <div className="hidden md:flex space-x-8">
@@ -87,8 +87,20 @@ export default function Home() {
 
       {/* Hero Section com Vídeo */}
       <section className="pt-32 pb-20 px-4 relative overflow-hidden">
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent"></div>
+        {/* Video Background apenas no Hero */}
+        <div className="absolute inset-0 overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-20"
+          >
+            <source src="/assets/background.mp4" type="video/mp4" />
+          </video>
+          {/* Overlay para melhor legibilidade */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80"></div>
+        </div>
 
         <div className="container mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -131,8 +143,18 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Typewriter Effect */}
-            <TypewriterEffect />
+            {/* Logo e Typewriter Effect no lado direito */}
+            <div className="flex flex-col items-center justify-center gap-8 w-full">
+              <Image
+                src="/assets/logo-full-white.svg"
+                alt="Artemis Digital Solutions"
+                width={350}
+                height={78}
+                className="w-full max-w-sm"
+                priority
+              />
+              <TypewriterEffect />
+            </div>
           </div>
         </div>
       </section>
