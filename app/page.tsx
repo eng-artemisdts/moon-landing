@@ -30,6 +30,8 @@ import {
 } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 import { TypewriterEffect } from "@/components/TypewriterEffect";
+import { ValueCard } from "@/components/ValueCard";
+import { ServiceCard } from "@/components/ServiceCard";
 import Image from "next/image";
 
 export default function Home() {
@@ -209,41 +211,72 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="p-8 bg-white/5 rounded-2xl border border-white/10 hover:border-white/30 transition-all group">
-              <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Eye className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Transparência</h3>
-              <p className="text-gray-400">
-                Construímos relações de confiança com linguagem clara, prazos
-                realistas e acompanhamento contínuo. Alinhamos expectativas
-                desde o início.
-              </p>
-            </div>
+            <ValueCard
+              icon={<Eye className="w-8 h-8 text-white" />}
+              title="Transparência"
+              description="Construímos relações de confiança com linguagem clara, prazos realistas e acompanhamento contínuo. Alinhamos expectativas desde o início."
+              detailedDescription="Transparência é a base de qualquer parceria de sucesso. Na Artemis Digital Solutions, acreditamos que a confiança se constrói através da clareza e honestidade em todas as etapas do projeto. Desde a primeira conversa até a entrega final, mantemos você informado sobre cada decisão, progresso e desafio."
+              benefits={[
+                "Comunicação clara e sem jargões técnicos desnecessários",
+                "Propostas detalhadas com escopo, prazos e custos bem definidos",
+                "Atualizações regulares sobre o andamento do projeto",
+                "Alinhamento de expectativas desde o início",
+                "Documentação completa e acessível",
+                "Feedback contínuo e espaço para dúvidas",
+              ]}
+              examples={[
+                "Apresentamos propostas com linguagem simples, explicando exatamente o que será feito, por que será feito e quais resultados esperamos alcançar",
+                "Durante o desenvolvimento, você recebe atualizações semanais com o progresso, próximos passos e eventuais ajustes necessários",
+                "Se surgir alguma limitação técnica ou mudança de escopo, comunicamos imediatamente e discutimos as melhores alternativas",
+                "Mantemos um canal direto de comunicação para que você possa tirar dúvidas a qualquer momento",
+                "Ao final do projeto, entregamos toda a documentação necessária para que você tenha autonomia sobre sua solução",
+              ]}
+            />
 
-            <div className="p-8 bg-white/5 rounded-2xl border border-white/10 hover:border-white/30 transition-all group">
-              <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Sparkles className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Inovação</h3>
-              <p className="text-gray-400">
-                Buscamos constantemente novas tecnologias e abordagens que
-                tragam ganhos reais, sempre alinhadas ao contexto e momento do
-                cliente.
-              </p>
-            </div>
+            <ValueCard
+              icon={<Sparkles className="w-8 h-8 text-white" />}
+              title="Inovação"
+              description="Buscamos constantemente novas tecnologias e abordagens que tragam ganhos reais, sempre alinhadas ao contexto e momento do cliente."
+              detailedDescription="Inovação não é apenas usar a tecnologia mais recente, mas sim aplicar as melhores soluções para resolver problemas reais. Estamos sempre atentos às tendências do mercado, novas ferramentas e metodologias que possam trazer benefícios concretos para o seu negócio, mas sempre com os pés no chão e foco em resultados práticos."
+              benefits={[
+                "Uso de tecnologias modernas e comprovadas no mercado",
+                "Soluções escaláveis que crescem com seu negócio",
+                "Automações inteligentes que economizam tempo e recursos",
+                "Integração com ferramentas que você já usa",
+                "Experiência do usuário otimizada e intuitiva",
+                "Performance e velocidade de carregamento superiores",
+              ]}
+              examples={[
+                "Implementamos automações com IA para chatbots que entendem contexto e oferecem respostas mais naturais e úteis",
+                "Utilizamos frameworks modernos como Next.js e React para criar sites rápidos, otimizados para SEO e com excelente experiência do usuário",
+                "Integramos seu site com ferramentas de CRM, e-mail marketing e analytics para centralizar suas operações",
+                "Aplicamos técnicas de otimização de performance que podem reduzir o tempo de carregamento em até 70%",
+                "Desenvolvemos soluções mobile-first que funcionam perfeitamente em qualquer dispositivo",
+              ]}
+            />
 
-            <div className="p-8 bg-white/5 rounded-2xl border border-white/10 hover:border-white/30 transition-all group">
-              <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Shield className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Segurança</h3>
-              <p className="text-gray-400">
-                Adotamos boas práticas de proteção de dados e continuidade
-                operacional, garantindo confidencialidade e uso responsável das
-                informações.
-              </p>
-            </div>
+            <ValueCard
+              icon={<Shield className="w-8 h-8 text-white" />}
+              title="Segurança"
+              description="Adotamos boas práticas de proteção de dados e continuidade operacional, garantindo confidencialidade e uso responsável das informações."
+              detailedDescription="Segurança é um valor inegociável. Sabemos que pequenos negócios lidam com dados sensíveis de clientes, informações financeiras e processos internos importantes. Por isso, todas as nossas soluções são desenvolvidas com foco na proteção dessas informações e na continuidade da operação, seguindo as melhores práticas do mercado e a LGPD."
+              benefits={[
+                "Proteção de dados pessoais conforme LGPD",
+                "Criptografia de informações sensíveis",
+                "Backups automáticos e recuperação de desastres",
+                "Autenticação segura e controle de acesso",
+                "Monitoramento proativo de vulnerabilidades",
+                "Atualizações regulares de segurança",
+              ]}
+              examples={[
+                "Implementamos SSL/HTTPS em todos os sites para criptografar a comunicação entre usuários e servidor",
+                "Configuramos backups automáticos diários com armazenamento em nuvem segura, garantindo que seus dados nunca sejam perdidos",
+                "Utilizamos autenticação de dois fatores (2FA) em áreas administrativas para prevenir acessos não autorizados",
+                "Aplicamos validação e sanitização de dados em formulários para prevenir ataques como SQL Injection e XSS",
+                "Mantemos sistemas atualizados com os últimos patches de segurança e monitoramos constantemente por vulnerabilidades",
+                "Seguimos o princípio do menor privilégio, garantindo que cada usuário tenha acesso apenas ao que realmente precisa",
+              ]}
+            />
           </div>
         </div>
       </section>
@@ -262,85 +295,289 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            <Card className="border-white/10 bg-black hover:bg-white/5 transition-all group">
-              <CardHeader>
-                <Globe className="w-10 h-10 text-white mb-2 group-hover:scale-110 transition-transform" />
-                <CardTitle className="text-xl">Landing Pages</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base text-gray-400">
-                  Páginas de alta conversão para captação de leads, campanhas e
-                  divulgação de produtos ou serviços específicos.
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <ServiceCard
+              icon={<Globe className="w-10 h-10 text-white" />}
+              title="Landing Pages"
+              description="Páginas de alta conversão para captação de leads, campanhas e divulgação de produtos ou serviços específicos."
+              detailedDescription="Landing pages são páginas focadas em um único objetivo: converter visitantes em leads ou clientes. Diferente de um site completo, uma landing page elimina distrações e guia o usuário para uma ação específica, como preencher um formulário, fazer uma compra ou baixar um material."
+              features={[
+                "Design responsivo e otimizado",
+                "Formulário de captura de leads",
+                "Integração com ferramentas de marketing",
+                "Otimização para SEO e velocidade",
+                "Call-to-actions estratégicos",
+                "Provas sociais e depoimentos",
+                "Analytics e rastreamento de conversões",
+                "Testes A/B para otimização",
+              ]}
+              benefits={[
+                "Aumento de até 300% na taxa de conversão comparado a páginas genéricas",
+                "Captura qualificada de leads interessados no seu produto/serviço",
+                "Mensagem focada e direcionada para seu público-alvo específico",
+                "Menor custo por lead em campanhas de anúncios online",
+                "Dados precisos sobre comportamento e interesse dos visitantes",
+                "Rápida implementação para campanhas e lançamentos",
+              ]}
+              process={[
+                "Reunião para entender seu objetivo, público-alvo e oferta",
+                "Criação de wireframe e estrutura da página focada em conversão",
+                "Design visual alinhado com sua identidade e otimizado para ação",
+                "Desenvolvimento com foco em performance e experiência do usuário",
+                "Integração com ferramentas (CRM, email marketing, analytics)",
+                "Testes de funcionalidade, velocidade e responsividade",
+                "Entrega com treinamento e documentação completa",
+              ]}
+              timeline="1-2 semanas"
+              priceRange="A partir de R$ 2.500"
+              idealFor={[
+                "Lançamento de produtos",
+                "Campanhas de marketing",
+                "Captação de leads",
+                "Eventos e webinars",
+                "Promoções específicas",
+                "Testes de mercado",
+              ]}
+            />
 
-            <Card className="border-white/10 bg-black hover:bg-white/5 transition-all group">
-              <CardHeader>
-                <Globe className="w-10 h-10 text-white mb-2 group-hover:scale-110 transition-transform" />
-                <CardTitle className="text-xl">Sites Institucionais</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base text-gray-400">
-                  Presença digital profissional e responsiva, apresentando sua
-                  empresa, serviços e diferenciais de forma organizada.
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <ServiceCard
+              icon={<Globe className="w-10 h-10 text-white" />}
+              title="Sites Institucionais"
+              description="Presença digital profissional e responsiva, apresentando sua empresa, serviços e diferenciais de forma organizada."
+              detailedDescription="Um site institucional é a casa digital da sua empresa. É onde clientes, parceiros e potenciais colaboradores conhecem sua história, valores, serviços e formas de contato. Desenvolvemos sites que transmitem profissionalismo e facilitam a jornada do visitante."
+              features={[
+                "Design personalizado e responsivo",
+                "Páginas: Home, Sobre, Serviços, Contato",
+                "Formulário de contato integrado",
+                "Blog/Notícias (opcional)",
+                "Galeria de fotos e vídeos",
+                "Depoimentos de clientes",
+                "Integração com redes sociais",
+                "Otimização para mecanismos de busca (SEO)",
+                "Painel administrativo intuitivo",
+                "Certificado SSL incluso",
+              ]}
+              benefits={[
+                "Credibilidade e profissionalismo para sua marca",
+                "Disponibilidade 24/7 para apresentar seus serviços",
+                "Alcance ampliado além da sua região geográfica",
+                "Redução de custos com materiais impressos e atendimento",
+                "Facilidade para clientes encontrarem informações",
+                "Base sólida para estratégias de marketing digital",
+                "Controle total sobre o conteúdo e atualizações",
+              ]}
+              process={[
+                "Briefing completo sobre sua empresa, objetivos e público",
+                "Definição de estrutura, páginas e funcionalidades necessárias",
+                "Criação de identidade visual ou adaptação da existente",
+                "Desenvolvimento das páginas com conteúdo otimizado",
+                "Implementação de formulários e integrações",
+                "Testes em diferentes dispositivos e navegadores",
+                "Treinamento para gestão de conteúdo",
+                "Lançamento e acompanhamento inicial",
+              ]}
+              timeline="3-4 semanas"
+              priceRange="A partir de R$ 4.500"
+              idealFor={[
+                "Empresas B2B",
+                "Prestadores de serviços",
+                "Consultórios e clínicas",
+                "Escritórios profissionais",
+                "Pequenas empresas",
+                "Startups",
+              ]}
+            />
 
-            <Card className="border-white/10 bg-black hover:bg-white/5 transition-all group">
-              <CardHeader>
-                <ShoppingCart className="w-10 h-10 text-white mb-2 group-hover:scale-110 transition-transform" />
-                <CardTitle className="text-xl">E-commerces</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base text-gray-400">
-                  Lojas virtuais completas com catálogo, pagamento, frete e
-                  gestão de pedidos. Venda online de forma profissional.
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <ServiceCard
+              icon={<ShoppingCart className="w-10 h-10 text-white" />}
+              title="E-commerces"
+              description="Lojas virtuais completas com catálogo, pagamento, frete e gestão de pedidos. Venda online de forma profissional."
+              detailedDescription="Um e-commerce é sua loja funcionando 24 horas por dia, 7 dias por semana. Desenvolvemos lojas virtuais completas, seguras e fáceis de gerenciar, com todas as funcionalidades necessárias para vender online com profissionalismo e eficiência."
+              features={[
+                "Catálogo de produtos ilimitado",
+                "Carrinho de compras inteligente",
+                "Múltiplas formas de pagamento",
+                "Cálculo automático de frete",
+                "Gestão de estoque em tempo real",
+                "Painel administrativo completo",
+                "Sistema de cupons e promoções",
+                "Área do cliente com histórico",
+                "Recuperação de carrinho abandonado",
+                "Integração com marketplaces",
+                "Relatórios de vendas e analytics",
+                "Certificado SSL e segurança PCI",
+              ]}
+              benefits={[
+                "Vendas 24/7 sem limitação geográfica",
+                "Redução de custos operacionais com loja física",
+                "Gestão centralizada de produtos, pedidos e clientes",
+                "Escalabilidade para crescer conforme demanda",
+                "Dados precisos sobre comportamento de compra",
+                "Automação de processos de venda e pós-venda",
+                "Múltiplos canais de venda integrados",
+              ]}
+              process={[
+                "Análise do negócio, produtos e estratégia de vendas",
+                "Definição de plataforma, funcionalidades e integrações",
+                "Design da loja focado em conversão e experiência",
+                "Cadastro inicial de produtos e categorias",
+                "Configuração de pagamentos, frete e impostos",
+                "Testes completos de fluxo de compra e segurança",
+                "Treinamento para gestão da loja",
+                "Lançamento com suporte intensivo no primeiro mês",
+              ]}
+              timeline="6-8 semanas"
+              priceRange="A partir de R$ 8.500"
+              idealFor={[
+                "Varejistas",
+                "Atacadistas",
+                "Fabricantes",
+                "Artesãos",
+                "Distribuidores",
+                "Revendedores",
+              ]}
+            />
 
-            <Card className="border-white/10 bg-black hover:bg-white/5 transition-all group">
-              <CardHeader>
-                <Zap className="w-10 h-10 text-white mb-2 group-hover:scale-110 transition-transform" />
-                <CardTitle className="text-xl">Automações</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base text-gray-400">
-                  Automatize processos repetitivos, integre sistemas e reduza
-                  tarefas manuais. Mais eficiência e menos retrabalho.
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <ServiceCard
+              icon={<Zap className="w-10 h-10 text-white" />}
+              title="Automações"
+              description="Automatize processos repetitivos, integre sistemas e reduza tarefas manuais. Mais eficiência e menos retrabalho."
+              detailedDescription="Automação é transformar tarefas manuais e repetitivas em processos automáticos e inteligentes. Identificamos gargalos na sua operação e criamos soluções que economizam tempo, reduzem erros e liberam sua equipe para atividades estratégicas."
+              features={[
+                "Análise e mapeamento de processos",
+                "Integração entre sistemas e ferramentas",
+                "Automação de fluxos de trabalho",
+                "Sincronização de dados em tempo real",
+                "Notificações e alertas automáticos",
+                "Geração automática de relatórios",
+                "Backup e arquivamento automático",
+                "Webhooks e APIs personalizadas",
+              ]}
+              benefits={[
+                "Economia de até 20 horas semanais em tarefas repetitivas",
+                "Redução de 90% em erros humanos de digitação e transferência",
+                "Processos executados com consistência e precisão",
+                "Informações atualizadas em tempo real entre sistemas",
+                "Equipe focada em atividades que geram valor",
+                "Escalabilidade sem aumento proporcional de custos",
+                "ROI positivo geralmente em menos de 6 meses",
+              ]}
+              process={[
+                "Mapeamento dos processos atuais e identificação de gargalos",
+                "Análise de viabilidade técnica e retorno sobre investimento",
+                "Desenho da solução de automação personalizada",
+                "Desenvolvimento e configuração das integrações",
+                "Testes em ambiente controlado com dados reais",
+                "Implementação gradual com acompanhamento",
+                "Documentação e treinamento da equipe",
+                "Suporte e ajustes pós-implementação",
+              ]}
+              timeline="2-6 semanas"
+              priceRange="A partir de R$ 3.500"
+              idealFor={[
+                "Equipes de vendas",
+                "Atendimento ao cliente",
+                "Gestão de leads",
+                "Processos administrativos",
+                "Marketing digital",
+                "Operações repetitivas",
+              ]}
+            />
 
-            <Card className="border-white/10 bg-black hover:bg-white/5 transition-all group">
-              <CardHeader>
-                <MessageSquare className="w-10 h-10 text-white mb-2 group-hover:scale-110 transition-transform" />
-                <CardTitle className="text-xl">
-                  Chatbots de Atendimento
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base text-gray-400">
-                  Atendimento automatizado em site e WhatsApp. Respostas rápidas
-                  às dúvidas mais comuns, 24 horas por dia.
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <ServiceCard
+              icon={<MessageSquare className="w-10 h-10 text-white" />}
+              title="Chatbots de Atendimento"
+              description="Atendimento automatizado em site e WhatsApp. Respostas rápidas às dúvidas mais comuns, 24 horas por dia."
+              detailedDescription="Chatbots são assistentes virtuais que atendem seus clientes 24/7, respondendo dúvidas frequentes, coletando informações e direcionando para atendimento humano quando necessário. Desenvolvemos chatbots inteligentes que melhoram a experiência do cliente e otimizam sua equipe."
+              features={[
+                "Atendimento 24/7 automatizado",
+                "Integração com WhatsApp Business",
+                "Widget para site responsivo",
+                "Fluxos de conversa personalizados",
+                "Respostas a perguntas frequentes",
+                "Coleta de dados e qualificação",
+                "Transferência para atendimento humano",
+                "Integração com CRM e sistemas",
+                "Relatórios de interações",
+                "Múltiplos idiomas (opcional)",
+              ]}
+              benefits={[
+                "Atendimento instantâneo sem espera",
+                "Redução de até 70% no volume de atendimentos humanos",
+                "Disponibilidade 24 horas, inclusive finais de semana",
+                "Padronização de informações fornecidas",
+                "Coleta automática de dados de potenciais clientes",
+                "Equipe focada em casos complexos e vendas",
+                "Satisfação do cliente com respostas rápidas",
+              ]}
+              process={[
+                "Levantamento das dúvidas mais frequentes dos clientes",
+                "Definição de fluxos de conversa e respostas",
+                "Configuração da personalidade e tom do chatbot",
+                "Desenvolvimento e integração com canais",
+                "Treinamento do bot com base de conhecimento",
+                "Testes com cenários reais de atendimento",
+                "Implementação com monitoramento inicial",
+                "Otimização contínua baseada em interações",
+              ]}
+              timeline="2-4 semanas"
+              priceRange="A partir de R$ 3.000"
+              idealFor={[
+                "E-commerces",
+                "Empresas de serviços",
+                "Suporte técnico",
+                "Agendamentos",
+                "Vendas online",
+                "Atendimento em escala",
+              ]}
+            />
 
-            <Card className="border-white/10 bg-black hover:bg-white/5 transition-all group">
-              <CardHeader>
-                <Wrench className="w-10 h-10 text-white mb-2 group-hover:scale-110 transition-transform" />
-                <CardTitle className="text-xl">Soluções Sob Medida</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base text-gray-400">
-                  Sistemas internos, dashboards e ferramentas específicas para
-                  necessidades únicas do seu negócio.
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <ServiceCard
+              icon={<Wrench className="w-10 h-10 text-white" />}
+              title="Soluções Sob Medida"
+              description="Sistemas internos, dashboards e ferramentas específicas para necessidades únicas do seu negócio."
+              detailedDescription="Cada negócio tem suas particularidades. Quando soluções prontas não atendem, desenvolvemos sistemas personalizados que se encaixam perfeitamente nos seus processos. De dashboards gerenciais a ferramentas específicas, criamos o que você precisa."
+              features={[
+                "Análise profunda das necessidades",
+                "Arquitetura personalizada",
+                "Interface intuitiva e customizada",
+                "Integrações com sistemas existentes",
+                "Banco de dados otimizado",
+                "Controles de acesso e permissões",
+                "Relatórios e dashboards visuais",
+                "API para integrações futuras",
+                "Documentação técnica completa",
+                "Escalabilidade planejada",
+              ]}
+              benefits={[
+                "Solução que atende exatamente suas necessidades específicas",
+                "Processos otimizados para sua realidade operacional",
+                "Vantagem competitiva com ferramenta exclusiva",
+                "Independência de soluções genéricas limitadas",
+                "Controle total sobre funcionalidades e dados",
+                "Possibilidade de evolução conforme crescimento",
+                "ROI mensurável e alinhado aos objetivos",
+              ]}
+              process={[
+                "Imersão no negócio e mapeamento detalhado de requisitos",
+                "Prototipagem e validação da solução proposta",
+                "Definição de arquitetura e tecnologias adequadas",
+                "Desenvolvimento iterativo com entregas parciais",
+                "Testes de usabilidade e performance",
+                "Treinamento completo da equipe",
+                "Implementação com acompanhamento próximo",
+                "Suporte e evolução contínua",
+              ]}
+              timeline="6-12 semanas"
+              priceRange="Sob consulta"
+              idealFor={[
+                "Processos únicos",
+                "Gestão interna",
+                "Dashboards gerenciais",
+                "Ferramentas específicas",
+                "Integrações complexas",
+                "Sistemas legados",
+              ]}
+            />
           </div>
         </div>
       </section>
