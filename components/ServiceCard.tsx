@@ -43,7 +43,9 @@ export function ServiceCard({
     setOpen(false);
     // Pequeno delay para garantir que o modal feche antes do scroll
     setTimeout(() => {
-      document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+      document
+        .getElementById("contato")
+        ?.scrollIntoView({ behavior: "smooth" });
     }, 100);
   };
 
@@ -102,8 +104,8 @@ export function ServiceCard({
           {/* O que está incluído */}
           <div className="bg-white/5 rounded-xl p-6 border border-white/10">
             <h4 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-              <span className="w-1 h-6 bg-white rounded-full"></span>
-              O que está incluído
+              <span className="w-1 h-6 bg-white rounded-full"></span>O que está
+              incluído
             </h4>
             <ul className="grid md:grid-cols-2 gap-3">
               {features.map((feature, index) => (
@@ -180,7 +182,8 @@ export function ServiceCard({
           {/* Call to action */}
           <div className="pt-4 border-t border-white/10 space-y-3">
             <p className="text-center text-gray-400">
-              Pronto para começar seu projeto de <strong className="text-white">{title}</strong>?
+              Pronto para começar seu projeto de{" "}
+              <strong className="text-white">{title}</strong>?
             </p>
             <div className="flex gap-3">
               <Button
@@ -203,4 +206,3 @@ export function ServiceCard({
     </Dialog>
   );
 }
-

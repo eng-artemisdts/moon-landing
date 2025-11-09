@@ -32,6 +32,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { TypewriterEffect } from "@/components/TypewriterEffect";
 import { ValueCard } from "@/components/ValueCard";
 import { ServiceCard } from "@/components/ServiceCard";
+import { ChatBot } from "@/components/ChatBot";
 import Image from "next/image";
 
 export default function Home() {
@@ -705,21 +706,21 @@ export default function Home() {
                 <div className="p-6 bg-white/5 rounded-lg border border-white/10">
                   <Mail className="w-8 h-8 mb-3" />
                   <h3 className="font-semibold mb-2">Email</h3>
-                  <p className="text-gray-400 text-sm">
-                    contato@artemisdigital.com
-                  </p>
+                  <p className="text-gray-400 text-sm">contato@artemis.tech</p>
                 </div>
 
                 <div className="p-6 bg-white/5 rounded-lg border border-white/10">
                   <Phone className="w-8 h-8 mb-3" />
                   <h3 className="font-semibold mb-2">Telefone</h3>
-                  <p className="text-gray-400 text-sm">(00) 00000-0000</p>
+                  <p className="text-gray-400 text-sm">+55 (31) 98293-6068</p>
                 </div>
 
                 <div className="p-6 bg-white/5 rounded-lg border border-white/10">
                   <MapPin className="w-8 h-8 mb-3" />
                   <h3 className="font-semibold mb-2">Localização</h3>
-                  <p className="text-gray-400 text-sm">Atendimento Online</p>
+                  <p className="text-gray-400 text-sm">
+                    Belo Horizonte, Minas Gerais, Brasil
+                  </p>
                 </div>
               </div>
             </div>
@@ -818,8 +819,8 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Contato</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li>contato@artemisdigital.com</li>
-                <li>(00) 00000-0000</li>
+                <li>contato@artemis.tech</li>
+                <li>+55 (31) 98293-6068</li>
                 <li>Atendimento Online</li>
               </ul>
             </div>
@@ -833,6 +834,9 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* ChatBot Flutuante */}
+      <ChatBot />
     </main>
   );
 }

@@ -1,28 +1,50 @@
 "use client";
 
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Loader2 } from "lucide-react";
 
-export function ContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+interface ContactFormData {
+  fullName: string;
+  email: string;
+  phone: string;
+  service: string;
+  budget: string;
+  message: string;
+}
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+export function ContactForm() {
+  const [submitted, setSubmitted] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactFormData>();
+
+  const onSubmit = async (data: ContactFormData) => {
+    // Adicionar timestamp aos dados
+    const formDataWithTimestamp = {
+      ...data,
+      submittedAt: new Date().toISOString(),
+    };
+
+    // Console log dos dados
+    console.log("=== CONTACT FORM DATA ===");
+    console.log(formDataWithTimestamp);
+    console.log("=========================");
 
     // Simular envio (você pode integrar com um backend ou serviço de email)
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    setIsSubmitting(false);
     setSubmitted(true);
 
     // Resetar formulário após 3 segundos
     setTimeout(() => {
       setSubmitted(false);
-      (e.target as HTMLFormElement).reset();
+      reset();
     }, 3000);
   };
 
@@ -55,17 +77,20 @@ export function ContactForm() {
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div>
               <label className="block text-sm font-medium mb-2">
                 Nome Completo *
               </label>
               <input
                 type="text"
-                required
-                className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-white focus:border-transparent transition-all"
+                {...register("fullName", { required: "Nome é obrigatório" })}
+                className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-white transition-all"
                 placeholder="Seu nome"
               />
+              {errors.fullName && (
+                <p className="text-red-500 text-sm mt-1">{errors.fullName.message}</p>
+              )}
             </div>
 
             <div className="grid md:grid-cols-2 gap-4">
@@ -75,10 +100,19 @@ export function ContactForm() {
                 </label>
                 <input
                   type="email"
-                  required
-                  className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-white focus:border-transparent transition-all"
+                  {...register("email", {
+                    required: "Email é obrigatório",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Email inválido",
+                    },
+                  })}
+                  className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-white transition-all"
                   placeholder="seu@email.com"
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                )}
               </div>
 
               <div>
@@ -87,10 +121,13 @@ export function ContactForm() {
                 </label>
                 <input
                   type="tel"
-                  required
-                  className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-white focus:border-transparent transition-all"
+                  {...register("phone", { required: "Telefone é obrigatório" })}
+                  className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-white transition-all"
                   placeholder="(00) 00000-0000"
                 />
+                {errors.phone && (
+                  <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
+                )}
               </div>
             </div>
 
@@ -99,30 +136,36 @@ export function ContactForm() {
                 Serviço de Interesse *
               </label>
               <select
-                required
-                className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-white focus:border-transparent transition-all"
+                {...register("service", { required: "Selecione um serviço" })}
+                className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-white transition-all"
               >
                 <option value="">Selecione um serviço</option>
                 <option value="landing-page">Landing Page</option>
-                <option value="site-institucional">Site Institucional</option>
+                <option value="website">Site Institucional</option>
                 <option value="ecommerce">E-commerce</option>
-                <option value="automacao">Automação de Processos</option>
+                <option value="automation">Automação de Processos</option>
                 <option value="chatbot">Chatbot de Atendimento</option>
-                <option value="sob-medida">Solução Sob Medida</option>
+                <option value="custom">Solução Sob Medida</option>
               </select>
+              {errors.service && (
+                <p className="text-red-500 text-sm mt-1">{errors.service.message}</p>
+              )}
             </div>
 
             <div>
               <label className="block text-sm font-medium mb-2">
                 Orçamento Estimado
               </label>
-              <select className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-white focus:border-transparent transition-all">
+              <select
+                {...register("budget")}
+                className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-white transition-all"
+              >
                 <option value="">Selecione uma faixa</option>
-                <option value="ate-5k">Até R$ 5.000</option>
+                <option value="up-to-5k">Até R$ 5.000</option>
                 <option value="5k-10k">R$ 5.000 - R$ 10.000</option>
                 <option value="10k-20k">R$ 10.000 - R$ 20.000</option>
-                <option value="acima-20k">Acima de R$ 20.000</option>
-                <option value="nao-definido">Ainda não definido</option>
+                <option value="above-20k">Acima de R$ 20.000</option>
+                <option value="not-defined">Ainda não definido</option>
               </select>
             </div>
 
@@ -131,11 +174,20 @@ export function ContactForm() {
                 Conte-nos sobre seu projeto *
               </label>
               <textarea
-                required
+                {...register("message", {
+                  required: "Mensagem é obrigatória",
+                  minLength: {
+                    value: 10,
+                    message: "Mensagem deve ter no mínimo 10 caracteres",
+                  },
+                })}
                 rows={5}
-                className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-white focus:border-transparent transition-all resize-none"
+                className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-white transition-all resize-none"
                 placeholder="Descreva suas necessidades, objetivos e qualquer informação relevante sobre o projeto..."
               ></textarea>
+              {errors.message && (
+                <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
+              )}
             </div>
 
             <Button
