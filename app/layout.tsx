@@ -7,6 +7,13 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Artemis Digital Solutions - Soluções Digitais para Pequenos Negócios",
   description: "Desenvolvimento de sites, landing pages, e-commerces, automações e chatbots para pequenos negócios. Tecnologia acessível e de qualidade.",
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({

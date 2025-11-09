@@ -27,9 +27,9 @@ import {
   Mail,
   Phone,
   MapPin,
-  Play,
 } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
+import { TypewriterEffect } from "@/components/TypewriterEffect";
 import Image from "next/image";
 
 export default function Home() {
@@ -43,11 +43,9 @@ export default function Home() {
             <Image
               src="/assets/logo.svg"
               alt="Artemis Digital Solutions"
-              width={40}
-              height={40}
-              className="w-10 h-10"
+              width={120}
+              height={150}
             />
-            <span className="font-bold text-xl">Artemis Digital Solutions</span>
           </div>
           <div className="hidden md:flex space-x-8">
             <a
@@ -131,33 +129,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Vídeo Section */}
-            <div className="relative">
-              <div className="aspect-video bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20 overflow-hidden relative group">
-                {/* Placeholder para vídeo - substitua o src pelo seu vídeo */}
-                <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-                  <div className="text-center">
-                    <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform cursor-pointer">
-                      <Play className="w-10 h-10 text-white ml-1" />
-                    </div>
-                    <p className="text-sm text-gray-300">
-                      Assista nosso vídeo de apresentação
-                    </p>
-                  </div>
-                </div>
-                {/* Descomente e adicione seu vídeo aqui */}
-                {/* <video
-                  className="w-full h-full object-cover"
-                  controls
-                  poster="/assets/video-thumbnail.jpg"
-                >
-                  <source src="/assets/intro-video.mp4" type="video/mp4" />
-                </video> */}
-              </div>
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-white/5 rounded-full blur-2xl"></div>
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
-            </div>
+            {/* Typewriter Effect */}
+            <TypewriterEffect />
           </div>
         </div>
       </section>
