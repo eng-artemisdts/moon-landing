@@ -6,13 +6,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Loader2 } from "lucide-react";
 import { useToast } from "@/components/ui/toast";
+import { BudgetRange, BudgetRangeLabels } from "@/lib/n8n-service";
 
 interface ContactFormData {
   fullName: string;
   email: string;
   phone: string;
   service: string;
-  budget: string;
+  budget: BudgetRange;
   message: string;
 }
 
@@ -182,11 +183,11 @@ export function ContactForm() {
                 className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-white transition-all"
               >
                 <option value="">Selecione uma faixa</option>
-                <option value="up-to-5k">Até R$ 5.000</option>
-                <option value="5k-10k">R$ 5.000 - R$ 10.000</option>
-                <option value="10k-20k">R$ 10.000 - R$ 20.000</option>
-                <option value="above-20k">Acima de R$ 20.000</option>
-                <option value="not-defined">Ainda não definido</option>
+                <option value={BudgetRange.UP_TO_5K}>{BudgetRangeLabels[BudgetRange.UP_TO_5K]}</option>
+                <option value={BudgetRange.FROM_5K_TO_10K}>{BudgetRangeLabels[BudgetRange.FROM_5K_TO_10K]}</option>
+                <option value={BudgetRange.FROM_10K_TO_20K}>{BudgetRangeLabels[BudgetRange.FROM_10K_TO_20K]}</option>
+                <option value={BudgetRange.ABOVE_20K}>{BudgetRangeLabels[BudgetRange.ABOVE_20K]}</option>
+                <option value={BudgetRange.NOT_DEFINED}>{BudgetRangeLabels[BudgetRange.NOT_DEFINED]}</option>
               </select>
             </div>
 

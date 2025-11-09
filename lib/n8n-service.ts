@@ -6,14 +6,38 @@
 // URL do webhook - pode ser configurada via variável de ambiente
 const N8N_WEBHOOK_URL = 
   process.env.N8N_WEBHOOK_URL || 
-  'https://n8n-n8n.kltkek.easypanel.host/webhook-test/4bb98269-a74c-4ebb-9725-155b2f8f0c03/lead';
+  'https://n8n-n8n.kltkek.easypanel.host/webhook-test/lead';
+
+/**
+ * Enum para faixas de orçamento
+ */
+export enum BudgetRange {
+  UP_TO_5K = 'up-to-5k',
+  FROM_5K_TO_10K = '5k-10k',
+  FROM_10K_TO_20K = '10k-20k',
+  ABOVE_20K = 'above-20k',
+  NOT_DEFINED = 'not-defined',
+  NOT_INFORMED = 'not-informed'
+}
+
+/**
+ * Labels legíveis para cada faixa de orçamento
+ */
+export const BudgetRangeLabels: Record<BudgetRange, string> = {
+  [BudgetRange.UP_TO_5K]: 'Até R$ 5.000',
+  [BudgetRange.FROM_5K_TO_10K]: 'R$ 5.000 - R$ 10.000',
+  [BudgetRange.FROM_10K_TO_20K]: 'R$ 10.000 - R$ 20.000',
+  [BudgetRange.ABOVE_20K]: 'Acima de R$ 20.000',
+  [BudgetRange.NOT_DEFINED]: 'Ainda não definido',
+  [BudgetRange.NOT_INFORMED]: 'Não informado'
+};
 
 export interface LeadData {
   fullName: string;
   email: string;
   phone: string;
   service: string;
-  budget: string;
+  budget: BudgetRange;
   message: string;
   submittedAt?: string;
 }
