@@ -27,6 +27,9 @@ import {
   Mail,
   Phone,
   MapPin,
+  Brain,
+  Cpu,
+  Network,
 } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 import { TypewriterEffect } from "@/components/TypewriterEffect";
@@ -411,6 +414,60 @@ export default function Home() {
             />
 
             <ServiceCard
+              icon={
+                <div className="relative">
+                  <Brain className="w-10 h-10 text-purple-400" />
+                  <Cpu className="w-5 h-5 text-cyan-400 absolute -bottom-1 -right-1" />
+                </div>
+              }
+              title="Modelos de IA Personalizados"
+              description="Treinamento e fine-tuning de modelos de Inteligência Artificial com os dados específicos da sua empresa para soluções inteligentes sob medida."
+              detailedDescription="Desenvolvemos e treinamos modelos de IA customizados utilizando os dados, documentos e conhecimento específicos da sua empresa. Através de fine-tuning de LLMs (Large Language Models) como GPT, Claude ou modelos open-source, criamos assistentes inteligentes que entendem profundamente o seu negócio, produtos e processos."
+              features={[
+                "Fine-tuning de modelos LLM (GPT, Claude, Llama)",
+                "Treinamento com documentos e dados da empresa",
+                "Base de conhecimento personalizada (RAG)",
+                "Integração com sistemas existentes",
+                "API própria para o modelo treinado",
+                "Embeddings de documentos e manuais",
+                "Respostas contextualizadas ao seu negócio",
+                "Atualização contínua do modelo",
+                "Dashboard de monitoramento e analytics",
+                "Segurança e privacidade dos dados",
+              ]}
+              benefits={[
+                "IA que entende profundamente seu negócio",
+                "Respostas precisas baseadas em seus dados reais",
+                "Automação de atendimento especializado",
+                "Redução de tempo em consultas internas",
+                "Assistente virtual com conhecimento da empresa",
+                "Escalabilidade sem perder qualidade",
+                "Vantagem competitiva com tecnologia de ponta",
+                "ROI mensurável em produtividade",
+              ]}
+              process={[
+                "Análise dos dados e documentos disponíveis",
+                "Definição de casos de uso e objetivos",
+                "Preparação e estruturação da base de conhecimento",
+                "Seleção e configuração do modelo base",
+                "Treinamento e fine-tuning com seus dados",
+                "Testes extensivos de qualidade e precisão",
+                "Integração com seus sistemas e plataformas",
+                "Deploy e monitoramento contínuo",
+              ]}
+              timeline="4-8 semanas"
+              priceRange="A partir de R$ 12.000"
+              idealFor={[
+                "Empresas com grande volume de documentação",
+                "E-commerces com catálogos extensos",
+                "Empresas de suporte técnico",
+                "Instituições educacionais",
+                "Empresas de consultoria",
+                "Startups de tecnologia",
+              ]}
+            />
+
+            <ServiceCard
               icon={<ShoppingCart className="w-10 h-10 text-white" />}
               title="E-commerces"
               description="Lojas virtuais completas com catálogo, pagamento, frete e gestão de pedidos. Venda online de forma profissional."
@@ -765,6 +822,14 @@ export default function Home() {
                     className="hover:text-white transition-colors"
                   >
                     Sites Institucionais
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#servicos"
+                    className="hover:text-white transition-colors"
+                  >
+                    Modelos de IA
                   </a>
                 </li>
                 <li>

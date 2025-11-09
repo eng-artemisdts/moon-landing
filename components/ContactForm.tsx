@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Loader2 } from "lucide-react";
+import { useToast } from "@/components/ui/toast";
 
 interface ContactFormData {
   fullName: string;
@@ -17,6 +18,7 @@ interface ContactFormData {
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const { showToast, ToastComponent } = useToast();
   const {
     register,
     handleSubmit,
@@ -25,35 +27,53 @@ export function ContactForm() {
   } = useForm<ContactFormData>();
 
   const onSubmit = async (data: ContactFormData) => {
-    // Adicionar timestamp aos dados
-    const formDataWithTimestamp = {
-      ...data,
-      submittedAt: new Date().toISOString(),
-    };
+    try {
+      // Envia os dados para a API
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-    // Console log dos dados
-    console.log("=== CONTACT FORM DATA ===");
-    console.log(formDataWithTimestamp);
-    console.log("=========================");
+      const result = await response.json();
 
-    // Simular envio (você pode integrar com um backend ou serviço de email)
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || 'Erro ao enviar formulário');
+      }
 
-    setSubmitted(true);
+      // Console log dos dados enviados
+      console.log("=== LEAD ENVIADO COM SUCESSO ===");
+      console.log(data);
+      console.log("================================");
 
-    // Resetar formulário após 3 segundos
-    setTimeout(() => {
-      setSubmitted(false);
-      reset();
-    }, 3000);
+      setSubmitted(true);
+
+      // Resetar formulário após 3 segundos
+      setTimeout(() => {
+        setSubmitted(false);
+        reset();
+      }, 3000);
+    } catch (error) {
+      console.error('Erro ao enviar formulário:', error);
+      
+      // Exibe mensagem de erro para o usuário
+      showToast({
+        message: 'Erro ao enviar formulário. Por favor, tente novamente.',
+        type: 'error',
+      });
+    }
   };
 
   return (
-    <Card className="border-border bg-card">
-      <CardHeader>
-        <CardTitle className="text-2xl">Solicitar Orçamento</CardTitle>
-      </CardHeader>
-      <CardContent>
+    <>
+      {ToastComponent}
+      <Card className="border-border bg-card">
+        <CardHeader>
+          <CardTitle className="text-2xl">Solicitar Orçamento</CardTitle>
+        </CardHeader>
+        <CardContent>
         {submitted ? (
           <div className="py-8 text-center">
             <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
@@ -142,6 +162,7 @@ export function ContactForm() {
                 <option value="">Selecione um serviço</option>
                 <option value="landing-page">Landing Page</option>
                 <option value="website">Site Institucional</option>
+                <option value="ai-model">Modelo de IA Personalizado</option>
                 <option value="ecommerce">E-commerce</option>
                 <option value="automation">Automação de Processos</option>
                 <option value="chatbot">Chatbot de Atendimento</option>
@@ -215,8 +236,9 @@ export function ContactForm() {
             </p>
           </form>
         )}
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </>
   );
 }
 

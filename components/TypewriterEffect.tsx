@@ -27,6 +27,7 @@ export function TypewriterEffect() {
                 strings: [
                   "Landing Pages",
                   "Sites Institucionais",
+                  "Modelos de IA Personalizados",
                   "E-commerces",
                   "Automações",
                   "Chatbots",
