@@ -21,27 +21,14 @@ interface Message {
 }
 
 export function ChatBot() {
-  // Flag para controlar se a IA está em treinamento
-  const AI_IN_TRAINING = true;
-
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "1",
-      text: "Olá! 👋 Sou o assistente virtual da Artemis Digital Solutions. Como posso ajudá-lo hoje?",
-      sender: "bot",
-      timestamp: new Date(),
-    },
-    {
-      id: "2",
-      text: "⚠️ Atenção: Estou em fase de treinamento! Para um atendimento completo e personalizado, por favor utilize nosso formulário de contato na página.",
-      sender: "bot",
-      timestamp: new Date(),
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const sessionIdRef = useRef<string>(
+    `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+  );
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -62,20 +49,92 @@ export function ChatBot() {
     };
 
     setMessages((prev) => [...prev, userMessage]);
+    const messageText = inputValue;
     setInputValue("");
     setIsTyping(true);
 
-    setTimeout(() => {
-      const botResponse = generateBotResponse(inputValue);
+    try {
+      const webhookUrl = process.env.NEXT_PUBLIC_N8N_CHAT_WEBHOOK_URL;
+
+      if (!webhookUrl) {
+        throw new Error("URL do webhook não configurada");
+      }
+
+      const response = await fetch(
+        webhookUrl,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chatInput: messageText,
+            sessionId: sessionIdRef.current,
+            timestamp: new Date().toISOString(),
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Erro na requisição: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      // Processa a resposta do n8n
+      // Tenta diferentes formatos de resposta comuns do n8n
+      let botResponseText = "";
+
+      if (typeof data === "string") {
+        botResponseText = data;
+      } else if (data.output) {
+        botResponseText = data.output;
+      } else if (data.response) {
+        botResponseText = data.response;
+      } else if (data.message) {
+        botResponseText = data.message;
+      } else if (data.text) {
+        botResponseText = data.text;
+      } else if (data.body?.output) {
+        botResponseText = data.body.output;
+      } else if (data.body?.response) {
+        botResponseText = data.body.response;
+      } else if (data.body?.message) {
+        botResponseText = data.body.message;
+      } else if (Array.isArray(data) && data.length > 0) {
+        // Se for um array, pega o primeiro item
+        const firstItem = data[0];
+        botResponseText = typeof firstItem === "string"
+          ? firstItem
+          : firstItem.output || firstItem.response || firstItem.message || firstItem.text || JSON.stringify(firstItem);
+      } else {
+        // Fallback: usa a resposta completa como string
+        botResponseText = JSON.stringify(data);
+      }
+
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: botResponse,
+        text: botResponseText || "Desculpe, não consegui processar a resposta.",
         sender: "bot",
         timestamp: new Date(),
       };
+
       setMessages((prev) => [...prev, botMessage]);
+    } catch (error) {
+      console.error("Erro ao enviar mensagem para o webhook:", error);
+
+      // Mensagem de erro amigável
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: "Desculpe, ocorreu um erro ao processar sua mensagem. Por favor, tente novamente ou entre em contato através do formulário.",
+        sender: "bot",
+        timestamp: new Date(),
+      };
+
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
       setIsTyping(false);
-    }, 1000 + Math.random() * 1000);
+    }
   };
 
   const generateBotResponse = (userInput: string): string => {
@@ -154,11 +213,6 @@ export function ChatBot() {
               <div>
                 <h3 className="font-semibold text-white flex items-center gap-2">
                   Artemis Assistant
-                  {AI_IN_TRAINING && (
-                    <span className="text-xs bg-yellow-500/20 text-yellow-300 px-2 py-0.5 rounded-full border border-yellow-500/30">
-                      Em Treinamento
-                    </span>
-                  )}
                 </h3>
                 <div className="flex items-center gap-1">
                   <span className="w-2 h-2 bg-green-500 rounded-full"></span>
@@ -180,23 +234,16 @@ export function ChatBot() {
                       Sobre o Assistente
                     </DialogTitle>
                     <DialogDescription className="text-gray-300 space-y-3 pt-4">
-                      <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-4">
-                        <p className="text-yellow-200 font-semibold mb-2 flex items-center gap-2">
-                          ⚠️ Assistente com IA{" "}
-                          {AI_IN_TRAINING && "- Em Treinamento"}
+                      <div className="bg-white/10 border border-white/20 rounded-lg p-4">
+                        <p className="text-white font-semibold mb-2 flex items-center gap-2">
+                          🤖 Assistente com IA
                         </p>
                         <p className="text-sm text-gray-300">
                           Este chatbot utiliza inteligência artificial para
                           fornecer respostas automáticas. As informações são
-                          baseadas em nossos serviços, mas podem não cobrir
-                          todos os detalhes específicos.
+                          baseadas em nossos serviços e podem ajudar com
+                          dúvidas sobre nossos produtos e serviços.
                         </p>
-                        {AI_IN_TRAINING && (
-                          <p className="text-sm text-yellow-300 mt-2 font-semibold">
-                            🔄 Atualmente em fase de treinamento e aprendizado
-                            contínuo.
-                          </p>
-                        )}
                       </div>
 
                       <div className="space-y-2 text-sm">
@@ -237,51 +284,18 @@ export function ChatBot() {
             </div>
           </div>
 
-          {AI_IN_TRAINING && (
-            <div className="bg-yellow-500/10 border-b border-yellow-500/30 p-3">
-              <div className="flex items-start gap-2 text-xs text-yellow-200">
-                <span className="flex-shrink-0 mt-0.5">⚠️</span>
-                <div className="flex-1">
-                  <p className="font-semibold mb-1">
-                    Assistente em Treinamento
-                  </p>
-                  <p className="text-yellow-300/80 mb-2">
-                    Este assistente está aprendendo. Para um atendimento
-                    completo, use nosso formulário de contato.
-                  </p>
-                  <Button
-                    size="sm"
-                    onClick={() => {
-                      setIsOpen(false);
-                      setTimeout(() => {
-                        document
-                          .getElementById("contato")
-                          ?.scrollIntoView({ behavior: "smooth" });
-                      }, 100);
-                    }}
-                    className="h-7 text-xs bg-yellow-500 text-black hover:bg-yellow-400"
-                  >
-                    Ir para Contato
-                  </Button>
-                </div>
-              </div>
-            </div>
-          )}
-
           <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-black to-black/95">
             {messages.map((message) => (
               <div
                 key={message.id}
-                className={`flex gap-3 ${
-                  message.sender === "user" ? "flex-row-reverse" : "flex-row"
-                }`}
+                className={`flex gap-3 ${message.sender === "user" ? "flex-row-reverse" : "flex-row"
+                  }`}
               >
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                    message.sender === "user"
-                      ? "bg-white/10"
-                      : "bg-gradient-to-br from-white/20 to-white/10"
-                  }`}
+                  className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${message.sender === "user"
+                    ? "bg-white/10"
+                    : "bg-gradient-to-br from-white/20 to-white/10"
+                    }`}
                 >
                   {message.sender === "user" ? (
                     <User className="w-4 h-4 text-white" />
@@ -290,16 +304,14 @@ export function ChatBot() {
                   )}
                 </div>
                 <div
-                  className={`flex flex-col max-w-[70%] ${
-                    message.sender === "user" ? "items-end" : "items-start"
-                  }`}
+                  className={`flex flex-col max-w-[70%] ${message.sender === "user" ? "items-end" : "items-start"
+                    }`}
                 >
                   <div
-                    className={`rounded-2xl px-4 py-2 ${
-                      message.sender === "user"
-                        ? "bg-white text-black"
-                        : "bg-white/10 text-white border border-white/20"
-                    }`}
+                    className={`rounded-2xl px-4 py-2 ${message.sender === "user"
+                      ? "bg-white text-black"
+                      : "bg-white/10 text-white border border-white/20"
+                      }`}
                   >
                     <p className="text-sm whitespace-pre-line">
                       {message.text}
@@ -360,13 +372,7 @@ export function ChatBot() {
               </Button>
             </form>
             <p className="text-xs text-gray-500 text-center mt-2">
-              {AI_IN_TRAINING ? (
-                <span className="text-yellow-400">
-                  🔄 IA em Treinamento • Respostas Automáticas
-                </span>
-              ) : (
-                "Assistente com IA • Respostas automáticas"
-              )}
+              Assistente com IA • Respostas automáticas
             </p>
           </div>
         </div>
