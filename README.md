@@ -33,6 +33,15 @@ yarn install
 pnpm install
 ```
 
+3. Configure as variáveis de ambiente:
+
+Crie um arquivo `.env.local` na raiz do projeto:
+
+```bash
+# URL do webhook do n8n para o chat
+NEXT_PUBLIC_N8N_CHAT_WEBHOOK_URL=https://n8n-n8n.kltkek.easypanel.host/webhook/38b343c7-a715-4f9c-b3a6-960b228e6573/chat
+```
+
 ## 🎯 Como Executar
 
 ### Modo de Desenvolvimento

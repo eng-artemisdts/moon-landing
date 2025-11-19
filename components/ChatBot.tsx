@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { MessageSquare, X, Send, Bot, User, Settings } from "lucide-react";
+import { MessageSquare, X, Send, Bot, User, Settings, Minimize2, Maximize2 } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -12,6 +12,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface Message {
   id: string;
@@ -22,6 +24,7 @@ interface Message {
 
 export function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -37,6 +40,19 @@ export function ChatBot() {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Adiciona mensagem inicial quando o chat é aberto pela primeira vez
+  useEffect(() => {
+    if (isOpen && messages.length === 0) {
+      const initialMessage: Message = {
+        id: "initial-message",
+        text: "Olá! Eu sou o OrionAI, assistente inteligente da Artemis Digital Solutions.\n\nPara que eu possa te ajudar da melhor forma, me conte o que você deseja melhorar ou resolver no seu negócio. Com base no seu desafio, vou identificar as melhores soluções de tecnologia e automação para o seu caso.",
+        sender: "bot",
+        timestamp: new Date(),
+      };
+      setMessages([initialMessage]);
+    }
+  }, [isOpen]);
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
@@ -195,16 +211,19 @@ export function ChatBot() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 w-16 h-16 bg-white text-black rounded-full shadow-2xl hover:scale-110 transition-transform z-50 flex items-center justify-center group"
+          className="fixed bottom-4 right-4 md:bottom-6 md:right-6 w-14 h-14 md:w-16 md:h-16 bg-white text-black rounded-full shadow-2xl hover:scale-110 transition-transform z-50 flex items-center justify-center group"
           aria-label="Abrir chat"
         >
-          <MessageSquare className="w-7 h-7" />
-          <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white animate-pulse"></span>
+          <MessageSquare className="w-6 h-6 md:w-7 md:h-7" />
+          <span className="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 bg-green-500 rounded-full border-2 border-white animate-pulse"></span>
         </button>
       )}
 
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-[380px] h-[600px] bg-black border border-white/20 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden">
+        <div className={`fixed bottom-4 right-4 md:bottom-6 md:right-6 bg-black border border-white/20 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden transition-all duration-300 ${isExpanded
+            ? "w-[calc(100vw-2rem)] md:w-[calc(100vw-4rem)] h-[calc(100vh-2rem)] md:h-[calc(100vh-4rem)] max-w-6xl"
+            : "w-[calc(100vw-2rem)] md:w-[380px] h-[600px] max-h-[calc(100vh-2rem)]"
+          }`}>
           <div className="bg-gradient-to-r from-white/10 to-white/5 p-4 border-b border-white/20 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
@@ -221,6 +240,17 @@ export function ChatBot() {
               </div>
             </div>
             <div className="flex items-center gap-2">
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                aria-label={isExpanded ? "Minimizar" : "Maximizar"}
+              >
+                {isExpanded ? (
+                  <Minimize2 className="w-5 h-5 text-gray-400" />
+                ) : (
+                  <Maximize2 className="w-5 h-5 text-gray-400" />
+                )}
+              </button>
               <Dialog>
                 <DialogTrigger asChild>
                   <button className="p-2 hover:bg-white/10 rounded-lg transition-colors">
@@ -313,9 +343,89 @@ export function ChatBot() {
                       : "bg-white/10 text-white border border-white/20"
                       }`}
                   >
-                    <p className="text-sm whitespace-pre-line">
-                      {message.text}
-                    </p>
+                    {message.sender === "bot" ? (
+                      <div className="text-sm prose prose-invert prose-sm max-w-none">
+                        <ReactMarkdown
+                          remarkPlugins={[remarkGfm]}
+                          components={{
+                            p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                            a: ({ href, children }) => (
+                              <a
+                                href={href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-400 hover:text-blue-300 underline break-words"
+                              >
+                                {children}
+                              </a>
+                            ),
+                            ul: ({ children }) => (
+                              <ul className="list-disc list-inside mb-2 space-y-1 ml-2">{children}</ul>
+                            ),
+                            ol: ({ children }) => (
+                              <ol className="list-decimal list-inside mb-2 space-y-1 ml-2">{children}</ol>
+                            ),
+                            li: ({ children }) => <li className="ml-2">{children}</li>,
+                            strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+                            em: ({ children }) => <em className="italic">{children}</em>,
+                            code: (props: any) => {
+                              const { children, className } = props;
+                              const isInline = !className || !className.includes("language-");
+                              if (isInline) {
+                                return (
+                                  <code className="bg-white/20 px-1.5 py-0.5 rounded text-xs font-mono">
+                                    {children}
+                                  </code>
+                                );
+                              }
+                              return (
+                                <code className="block bg-white/10 p-3 rounded-lg overflow-x-auto text-xs font-mono mb-2">
+                                  {children}
+                                </code>
+                              );
+                            },
+                            pre: ({ children }) => (
+                              <pre className="bg-white/10 p-3 rounded-lg overflow-x-auto mb-2">
+                                {children}
+                              </pre>
+                            ),
+                            blockquote: ({ children }) => (
+                              <blockquote className="border-l-4 border-white/30 pl-4 my-2 italic">
+                                {children}
+                              </blockquote>
+                            ),
+                            h1: ({ children }) => <h1 className="text-lg font-bold mb-2">{children}</h1>,
+                            h2: ({ children }) => <h2 className="text-base font-bold mb-2">{children}</h2>,
+                            h3: ({ children }) => <h3 className="text-sm font-bold mb-2">{children}</h3>,
+                            hr: () => <hr className="my-3 border-white/20" />,
+                            table: ({ children }) => (
+                              <div className="overflow-x-auto my-2">
+                                <table className="min-w-full border-collapse border border-white/20">
+                                  {children}
+                                </table>
+                              </div>
+                            ),
+                            thead: ({ children }) => <thead className="bg-white/10">{children}</thead>,
+                            tbody: ({ children }) => <tbody>{children}</tbody>,
+                            tr: ({ children }) => <tr className="border-b border-white/10">{children}</tr>,
+                            th: ({ children }) => (
+                              <th className="border border-white/20 px-3 py-2 text-left font-semibold">
+                                {children}
+                              </th>
+                            ),
+                            td: ({ children }) => (
+                              <td className="border border-white/20 px-3 py-2">{children}</td>
+                            ),
+                          }}
+                        >
+                          {message.text}
+                        </ReactMarkdown>
+                      </div>
+                    ) : (
+                      <p className="text-sm whitespace-pre-line break-words">
+                        {message.text}
+                      </p>
+                    )}
                   </div>
                   <span className="text-xs text-gray-500 mt-1">
                     {formatTime(message.timestamp)}

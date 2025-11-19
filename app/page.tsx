@@ -30,6 +30,11 @@ import {
   Brain,
   Cpu,
   Network,
+  TrendingUp,
+  Instagram,
+  Palette,
+  Video,
+  Lightbulb,
 } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 import { TypewriterEffect } from "@/components/TypewriterEffect";
@@ -656,6 +661,245 @@ export default function Home() {
                 "Ferramentas específicas",
                 "Integrações complexas",
                 "Sistemas legados",
+              ]}
+            />
+
+            <ServiceCard
+              icon={<TrendingUp className="w-10 h-10 text-white" />}
+              title="Gestão de Tráfego"
+              description="Gestão de campanhas pagas (tráfego pago) no Google, Instagram e Facebook. Levamos seu cliente ideal diretamente para sua landing page, Whatsapp e e-commerce, garantindo que cada investimento em anúncios gere o melhor Retorno sobre o Investimento e o crescimento do seu negócio."
+              detailedDescription="A gestão de tráfego pago é a estratégia de investir em anúncios online para atrair visitantes qualificados para seu site, landing page ou WhatsApp. Gerenciamos suas campanhas no Google Ads, Meta Ads (Facebook e Instagram) e outras plataformas, otimizando continuamente para maximizar o ROI e trazer os clientes certos para seu negócio."
+              features={[
+                "Criação e gestão de campanhas no Google Ads",
+                "Gestão de anúncios no Facebook e Instagram",
+                "Configuração de pixels e conversões",
+                "Segmentação avançada de público",
+                "Otimização contínua de campanhas",
+                "A/B testing de criativos e copy",
+                "Relatórios detalhados de performance",
+                "Gestão de orçamento e lances",
+                "Remarketing e campanhas de reconversão",
+                "Integração com Google Analytics",
+              ]}
+              benefits={[
+                "Tráfego qualificado direcionado para suas páginas",
+                "Maior ROI em campanhas de marketing digital",
+                "Redução do custo por aquisição (CPA)",
+                "Aumento de conversões e vendas online",
+                "Dados precisos sobre comportamento do público",
+                "Escalabilidade controlada do investimento",
+                "Otimização contínua baseada em resultados",
+              ]}
+              process={[
+                "Análise do negócio, público-alvo e objetivos",
+                "Definição de estratégia e plataformas ideais",
+                "Configuração de contas e pixels de rastreamento",
+                "Criação de campanhas e anúncios otimizados",
+                "Lançamento e monitoramento inicial",
+                "Otimização semanal baseada em dados",
+                "Relatórios mensais de performance",
+                "Ajustes estratégicos contínuos",
+              ]}
+              timeline="2-3 semanas para setup inicial"
+              priceRange="A partir de R$ 1.500/mês"
+              idealFor={[
+                "E-commerces",
+                "Landing pages de captação",
+                "Empresas de serviços",
+                "Negócios locais",
+                "Lançamentos de produtos",
+                "Campanhas sazonais",
+              ]}
+            />
+
+            <ServiceCard
+              icon={<Instagram className="w-10 h-10 text-white" />}
+              title="Social Media"
+              description="Criação de conteúdo estratégico e gerenciamento profissional das suas redes sociais. Transformamos suas mídias em canais de atração, relacionamento e vendas, construindo uma comunidade engajada e fortalecendo a presença digital da sua marca dia após dia."
+              detailedDescription="O gerenciamento de redes sociais vai além de postar conteúdo. É construir uma presença digital consistente, engajar com sua audiência, criar relacionamentos e converter seguidores em clientes. Desenvolvemos estratégias personalizadas para cada plataforma, criando conteúdo relevante que conecta sua marca com seu público."
+              features={[
+                "Planejamento estratégico de conteúdo",
+                "Criação de posts e stories",
+                "Design de artes e templates",
+                "Gestão de Instagram, Facebook e LinkedIn",
+                "Comunidade management e engajamento",
+                "Análise de métricas e KPIs",
+                "Gestão de comentários e mensagens",
+                "Criação de campanhas orgânicas",
+                "Calendário editorial mensal",
+                "Relatórios de performance",
+              ]}
+              benefits={[
+                "Presença digital consistente e profissional",
+                "Aumento de engajamento e seguidores",
+                "Construção de comunidade engajada",
+                "Fortalecimento da marca e autoridade",
+                "Geração de leads através das redes",
+                "Melhor relacionamento com clientes",
+                "Crescimento orgânico da audiência",
+              ]}
+              process={[
+                "Análise da marca, público e concorrência",
+                "Definição de estratégia e tom de voz",
+                "Criação de calendário editorial",
+                "Desenvolvimento de identidade visual",
+                "Produção e publicação de conteúdo",
+                "Gestão diária de interações",
+                "Análise semanal de métricas",
+                "Ajustes estratégicos mensais",
+              ]}
+              timeline="Setup inicial em 1 semana"
+              priceRange="A partir de R$ 2.000/mês"
+              idealFor={[
+                "Pequenas e médias empresas",
+                "E-commerces",
+                "Prestadores de serviços",
+                "Marcas pessoais",
+                "Negócios locais",
+                "Startups",
+              ]}
+            />
+
+            <ServiceCard
+              icon={<Palette className="w-10 h-10 text-white" />}
+              title="Criação de Logo e Identidade Visual"
+              description="Desenvolvimento completo da identidade visual da sua marca, incluindo logo, paleta de cores, tipografia e diretrizes de uso. Construímos uma imagem profissional, memorável e confiável, essencial para diferenciar seu pequeno negócio no mercado e criar conexão com seu público."
+              detailedDescription="A identidade visual é a primeira impressão que sua marca causa. É como você se apresenta ao mundo e como seu público te reconhece. Desenvolvemos identidades visuais completas que comunicam os valores da sua marca, criam conexão emocional e estabelecem confiança com seu público-alvo."
+              features={[
+                "Criação de logo profissional",
+                "Desenvolvimento de variações do logo",
+                "Paleta de cores personalizada",
+                "Seleção de tipografia",
+                "Manual de identidade visual",
+                "Diretrizes de aplicação",
+                "Versões para diferentes mídias",
+                "Arquivos vetoriais e rasterizados",
+                "Aplicações em materiais gráficos",
+                "Revisões e ajustes inclusos",
+              ]}
+              benefits={[
+                "Imagem profissional e memorável",
+                "Diferenciação no mercado",
+                "Consistência visual em todos os pontos de contato",
+                "Maior credibilidade e confiança",
+                "Conexão emocional com o público",
+                "Base sólida para marketing",
+                "Valor agregado à marca",
+              ]}
+              process={[
+                "Briefing sobre a marca, valores e público",
+                "Pesquisa de mercado e concorrência",
+                "Desenvolvimento de conceitos visuais",
+                "Apresentação de propostas iniciais",
+                "Refinamento do conceito escolhido",
+                "Desenvolvimento da identidade completa",
+                "Criação do manual de identidade",
+                "Entrega de arquivos finais",
+              ]}
+              timeline="3-4 semanas"
+              priceRange="A partir de R$ 2.500"
+              idealFor={[
+                "Novos negócios",
+                "Rebranding de empresas",
+                "Marcas pessoais",
+                "Startups",
+                "Pequenas empresas",
+                "Empreendedores",
+              ]}
+            />
+
+            <ServiceCard
+              icon={<Video className="w-10 h-10 text-white" />}
+              title="Edição de Fotos e Vídeos"
+              description="Edição profissional de material visual para suas campanhas, redes sociais e websites. Garantimos que suas fotos e vídeos transmitam alta qualidade e profissionalismo, otimizando o engajamento e a credibilidade do seu conteúdo digital."
+              detailedDescription="Conteúdo visual de alta qualidade é essencial para destacar sua marca nas redes sociais, campanhas e website. Oferecemos serviços de edição profissional de fotos e vídeos que elevam a qualidade do seu material, garantindo que cada imagem e vídeo transmita profissionalismo e engaje seu público."
+              features={[
+                "Edição de fotos profissionais",
+                "Tratamento e correção de cores",
+                "Edição de vídeos para redes sociais",
+                "Criação de reels e stories",
+                "Adição de textos e gráficos",
+                "Correção de áudio em vídeos",
+                "Criação de thumbnails",
+                "Otimização para diferentes plataformas",
+                "Formatação para web e impressão",
+                "Entrega em múltiplos formatos",
+              ]}
+              benefits={[
+                "Conteúdo visual de alta qualidade",
+                "Maior engajamento nas redes sociais",
+                "Profissionalismo em todos os materiais",
+                "Consistência visual da marca",
+                "Melhor conversão em campanhas",
+                "Economia de tempo na produção",
+                "Credibilidade e confiança",
+              ]}
+              process={[
+                "Recebimento do material bruto",
+                "Análise e planejamento da edição",
+                "Tratamento e correção de imagens",
+                "Edição e montagem de vídeos",
+                "Adição de elementos gráficos",
+                "Revisão e ajustes finais",
+                "Entrega nos formatos solicitados",
+              ]}
+              timeline="2-5 dias por projeto"
+              priceRange="A partir de R$ 150/projeto"
+              idealFor={[
+                "Redes sociais",
+                "Campanhas publicitárias",
+                "E-commerces",
+                "Landing pages",
+                "Conteúdo para blog",
+                "Materiais promocionais",
+              ]}
+            />
+
+            <ServiceCard
+              icon={<Lightbulb className="w-10 h-10 text-white" />}
+              title="Consultoria de Marketing"
+              description="Análise e planejamento estratégico personalizado do seu marketing digital. Oferecemos um mapa claro e prático para suas ações online, identificando as melhores ferramentas (como automações e IA) e os canais mais eficientes para alcançar seus objetivos de vendas e crescimento a longo prazo."
+              detailedDescription="A consultoria de marketing digital oferece uma visão estratégica completa do seu posicionamento online. Analisamos seu negócio, concorrência e mercado para criar um plano de ação personalizado que identifica as melhores oportunidades, ferramentas e canais para alcançar seus objetivos de crescimento e vendas."
+              features={[
+                "Análise completa do negócio e mercado",
+                "Auditoria de marketing digital atual",
+                "Pesquisa de concorrência",
+                "Definição de público-alvo e personas",
+                "Planejamento estratégico personalizado",
+                "Roadmap de implementação",
+                "Recomendações de ferramentas e tecnologias",
+                "Análise de oportunidades de automação",
+                "Estratégias de conteúdo e canais",
+                "Relatório executivo completo",
+              ]}
+              benefits={[
+                "Visão estratégica clara do marketing digital",
+                "Identificação das melhores oportunidades",
+                "Economia de tempo e recursos",
+                "Priorização de ações mais eficazes",
+                "Roadmap prático para implementação",
+                "Alinhamento com objetivos de negócio",
+                "Base sólida para crescimento sustentável",
+              ]}
+              process={[
+                "Reunião inicial para entender o negócio",
+                "Coleta de dados e informações",
+                "Análise de mercado e concorrência",
+                "Desenvolvimento do plano estratégico",
+                "Apresentação e discussão do plano",
+                "Ajustes e refinamentos",
+                "Entrega do relatório executivo",
+                "Acompanhamento opcional de implementação",
+              ]}
+              timeline="2-3 semanas"
+              priceRange="A partir de R$ 3.500"
+              idealFor={[
+                "Empresas iniciando no digital",
+                "Negócios em transição digital",
+                "Empresas buscando otimização",
+                "Startups",
+                "Pequenas e médias empresas",
+                "Empreendedores estratégicos",
               ]}
             />
           </div>
