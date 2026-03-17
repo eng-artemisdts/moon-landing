@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Accordion,
@@ -25,9 +25,19 @@ import {
   ShoppingCart,
 } from "lucide-react";
 import Image from "next/image";
+import nextDynamic from "next/dynamic";
 import { ContactForm } from "@/components/ContactForm";
-import { TypewriterEffect } from "@/components/TypewriterEffect";
-import { ChatBot } from "@/components/ChatBot";
+
+const TypewriterEffect = nextDynamic(
+  () => import("@/components/TypewriterEffect").then((m) => m.TypewriterEffect),
+  { ssr: false }
+);
+const ChatBot = nextDynamic(
+  () => import("@/components/ChatBot").then((m) => m.ChatBot),
+  { ssr: false }
+);
+
+export const dynamic = "force-dynamic";
 
 const clients = [
   {
@@ -83,9 +93,12 @@ export default function Home() {
               Contato
             </a>
           </div>
-          <Button asChild className="bg-white text-black hover:bg-gray-200">
-            <a href="#contato">Falar com especialista</a>
-          </Button>
+          <a
+            href="#contato"
+            className={buttonVariants({ className: "bg-white text-black hover:bg-gray-200" })}
+          >
+            Falar com especialista
+          </a>
         </nav>
       </header>
 
@@ -114,24 +127,19 @@ export default function Home() {
                 com IA.
               </p>
               <div className="flex flex-col gap-4 sm:flex-row">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-white text-black hover:bg-gray-200"
+                <a
+                  href="#contato"
+                  className={buttonVariants({ size: "lg", className: "bg-white text-black hover:bg-gray-200" })}
                 >
-                  <a href="#contato">
-                    Solicitar diagnóstico técnico
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </a>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="border-white/40 bg-transparent text-white hover:bg-white hover:text-black"
+                  Solicitar diagnóstico técnico
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
+                <a
+                  href="#solucoes"
+                  className={buttonVariants({ variant: "outline", size: "lg", className: "border-white/40 bg-transparent text-white hover:bg-white hover:text-black" })}
                 >
-                  <a href="#solucoes">Ver soluções</a>
-                </Button>
+                  Ver soluções
+                </a>
               </div>
             </div>
 
@@ -285,19 +293,15 @@ export default function Home() {
                 <li>Habilidades para proposta, mídia e agendamento</li>
                 <li>Integração com WhatsApp e visão clara de funil</li>
               </ul>
-              <Button
-                asChild
-                className="mt-8 bg-white text-black hover:bg-gray-200"
+              <a
+                href="https://www.nebula.artemisdigital.tech/"
+                target="_blank"
+                rel="noreferrer"
+                className={buttonVariants({ className: "mt-8 bg-white text-black hover:bg-gray-200" })}
               >
-                <a
-                  href="https://www.nebula.artemisdigital.tech/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Conhecer o Nebula
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
-              </Button>
+                Conhecer o Nebula
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
             </div>
             <div className="rounded-2xl border border-white/15 bg-black/40 p-6">
               <p className="text-sm uppercase tracking-[0.15em] text-white/60">
