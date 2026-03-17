@@ -72,7 +72,7 @@ export function ContactForm() {
       {ToastComponent}
       <Card className="border-border bg-card">
         <CardHeader>
-          <CardTitle className="text-2xl">Solicitar Orçamento</CardTitle>
+          <CardTitle className="text-2xl">Solicitar Diagnóstico Técnico</CardTitle>
         </CardHeader>
         <CardContent>
         {submitted ? (
@@ -94,7 +94,7 @@ export function ContactForm() {
             </div>
             <h3 className="text-xl font-semibold mb-2">Mensagem Enviada!</h3>
             <p className="text-muted-foreground">
-              Entraremos em contato em até 24 horas.
+              Nosso time retorna em até 24 horas.
             </p>
           </div>
         ) : (
@@ -154,20 +154,19 @@ export function ContactForm() {
 
             <div>
               <label className="block text-sm font-medium mb-2">
-                Serviço de Interesse *
+                Solução de Interesse *
               </label>
               <select
                 {...register("service", { required: "Selecione um serviço" })}
                 className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-white transition-all"
               >
-                <option value="">Selecione um serviço</option>
-                <option value="landing-page">Landing Page</option>
-                <option value="website">Site Institucional</option>
-                <option value="ai-model">Modelo de IA Personalizado</option>
+                <option value="">Selecione uma solução</option>
+                <option value="ia-automacoes">IA e Automações</option>
+                <option value="software-sob-medida">Software Sob Medida</option>
                 <option value="ecommerce">E-commerce</option>
-                <option value="automation">Automação de Processos</option>
-                <option value="chatbot">Chatbot de Atendimento</option>
-                <option value="custom">Solução Sob Medida</option>
+                <option value="integracoes">Integrações e APIs</option>
+                <option value="nebula">Nebula (CRM com IA)</option>
+                <option value="arquitetura">Arquitetura e Evolução de Sistemas</option>
               </select>
               {errors.service && (
                 <p className="text-red-500 text-sm mt-1">{errors.service.message}</p>
@@ -225,7 +224,7 @@ export function ContactForm() {
                 </>
               ) : (
                 <>
-                  Enviar Solicitação
+                  Enviar diagnóstico
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </>
               )}

@@ -46,13 +46,13 @@ export function ChatBot() {
     if (isOpen && messages.length === 0) {
       const initialMessage: Message = {
         id: "initial-message",
-        text: "Olá! Eu sou o OrionAI, assistente inteligente da Artemis Digital Solutions.\n\nPara que eu possa te ajudar da melhor forma, me conte o que você deseja melhorar ou resolver no seu negócio. Com base no seu desafio, vou identificar as melhores soluções de tecnologia e automação para o seu caso.",
+        text: "Olá! Eu sou o OrionAI, assistente da Artemis Digital Solutions.\n\nSomos uma software house focada em IA, automações, software sob medida e e-commerce. Me conte o seu cenário para eu indicar a melhor solução técnica.",
         sender: "bot",
         timestamp: new Date(),
       };
       setMessages([initialMessage]);
     }
-  }, [isOpen]);
+  }, [isOpen, messages.length]);
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
@@ -165,15 +165,15 @@ export function ChatBot() {
     }
 
     if (input.includes("site") || input.includes("landing")) {
-      return "Desenvolvemos sites institucionais e landing pages profissionais! Incluímos design responsivo, otimização SEO e integração com redes sociais. Quer saber mais sobre algum aspecto específico?";
+      return "Desenvolvemos páginas e experiências web com foco em performance, conversão e integração com o restante da operação. Quer que eu te mostre o melhor formato para o seu caso?";
     }
 
     if (input.includes("ecommerce") || input.includes("loja")) {
-      return "Criamos e-commerces completos com catálogo de produtos, carrinho de compras, integração com meios de pagamento e painel administrativo. Posso te ajudar com mais informações?";
+      return "Criamos e-commerces robustos, com integração de pagamento, logística e automação do funil comercial. Posso te ajudar a mapear o escopo ideal?";
     }
 
     if (input.includes("chatbot") || input.includes("automação")) {
-      return "Desenvolvemos chatbots inteligentes e automações para WhatsApp, Instagram e outras plataformas. Isso pode economizar tempo e melhorar o atendimento ao cliente. Quer conhecer casos de uso?";
+      return "Desenvolvemos automações e agentes de IA para WhatsApp e outros canais, conectados ao seu CRM e processos internos. Quer exemplos aplicados ao seu negócio?";
     }
 
     if (
@@ -181,7 +181,7 @@ export function ChatBot() {
       input.includes("tempo") ||
       input.includes("quanto tempo")
     ) {
-      return "O prazo varia conforme a complexidade do projeto:\n• Landing Pages: 1-2 semanas\n• Sites: 2-4 semanas\n• E-commerce: 4-8 semanas\n• Automações: 1-3 semanas\n\nQue tipo de projeto você tem em mente?";
+      return "O prazo varia com a complexidade e integrações, mas normalmente iniciamos entregas entre 2 e 8 semanas. Se quiser, te ajudo a estimar o seu cenário.";
     }
 
     if (
@@ -189,14 +189,14 @@ export function ChatBot() {
       input.includes("falar") ||
       input.includes("orçamento")
     ) {
-      return "Você pode entrar em contato conosco através do formulário na seção de contato da página, ou pelo email contato@artemisdigital.com. Prefere que eu te direcione para o formulário?";
+      return "Você pode falar conosco pelo formulário da landing ou via contato@artemis.tech. Se quiser, te direciono para o formulário agora.";
     }
 
     if (input.includes("obrigado") || input.includes("valeu")) {
       return "Por nada! Estou aqui para ajudar. Se tiver mais alguma dúvida, é só perguntar! 😊";
     }
 
-    return "Entendo! Posso te ajudar com informações sobre nossos serviços: sites, landing pages, e-commerces, automações e chatbots. Sobre qual você gostaria de saber mais?";
+    return "Posso te ajudar com IA e automações, software sob medida, e-commerce e integrações. Sobre qual frente você quer conversar primeiro?";
   };
 
   const formatTime = (date: Date) => {

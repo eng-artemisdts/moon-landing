@@ -121,13 +121,13 @@ export function ValueCard({
           {/* Call to action */}
           <div className="pt-4 border-t border-white/10">
             <p className="text-sm text-gray-400 text-center">
-              Quer saber como aplicamos {title.toLowerCase()} no seu projeto?
+              Quer aplicar {title.toLowerCase()} com execução técnica sólida?
             </p>
             <Button
               onClick={handleContactClick}
               className="w-full mt-3 bg-white text-black hover:bg-gray-200"
             >
-              Entre em Contato
+              Falar com especialista técnico
             </Button>
           </div>
         </div>

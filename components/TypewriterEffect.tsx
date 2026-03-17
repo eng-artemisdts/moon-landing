@@ -5,33 +5,20 @@ import Typewriter from "typewriter-effect";
 export function TypewriterEffect() {
   return (
     <div className="relative w-full">
-      {/* Container com altura fixa para evitar layout shift */}
-      <div className="bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20 overflow-hidden relative group p-8 min-h-[400px] flex items-center justify-center">
-        {/* Background com padrão de grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
-        
-        {/* Efeito de brilho animado */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 animate-pulse"></div>
-        
-        {/* Conteúdo central */}
+      <div className="glass-panel relative flex min-h-[340px] items-center justify-center overflow-hidden rounded-2xl border border-white/20 p-8">
         <div className="relative z-10 text-center max-w-2xl">
-          {/* Título estático */}
-          <h3 className="text-2xl md:text-3xl font-bold mb-6 text-white">
-            Desenvolvemos
-          </h3>
-          
-          {/* Typewriter Effect */}
+          <h3 className="mb-6 text-2xl font-bold text-white md:text-3xl">Entregamos</h3>
+
           <div className="text-4xl md:text-5xl font-bold text-white min-h-[80px] flex items-center justify-center">
             <Typewriter
               options={{
                 strings: [
-                  "Landing Pages",
-                  "Sites Institucionais",
-                  "Modelos de IA Personalizados",
-                  "E-commerces",
-                  "Automações",
-                  "Chatbots",
-                  "Soluções Sob Medida",
+                  "IA aplicada ao comercial",
+                  "Automações ponta a ponta",
+                  "Software sob medida",
+                  "E-commerce escalável",
+                  "Integrações críticas de negócio",
+                  "Arquitetura para crescimento",
                 ],
                 autoStart: true,
                 loop: true,
@@ -41,35 +28,23 @@ export function TypewriterEffect() {
               }}
             />
           </div>
-          
-          {/* Subtítulo */}
+
           <p className="text-lg md:text-xl text-gray-400 mt-6">
-            Para pequenos negócios que querem crescer
+            Tecnologia com clareza de escopo e foco em resultado
           </p>
-          
-          {/* Indicadores visuais */}
+
           <div className="flex items-center justify-center gap-4 mt-8">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-sm text-gray-400">Online</span>
+              <span className="text-sm text-gray-400">Time ativo</span>
             </div>
             <div className="w-px h-4 bg-white/20"></div>
             <div className="text-sm text-gray-400">
-              Resposta em até 24h
+              Diagnóstico inicial em até 24h
             </div>
           </div>
         </div>
-        
-        {/* Decorative corners */}
-        <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-white/20 rounded-tl-2xl"></div>
-        <div className="absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-white/20 rounded-tr-2xl"></div>
-        <div className="absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-white/20 rounded-bl-2xl"></div>
-        <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-white/20 rounded-br-2xl"></div>
       </div>
-      
-      {/* Decorative elements externos */}
-      <div className="absolute -top-4 -right-4 w-24 h-24 bg-white/5 rounded-full blur-2xl"></div>
-      <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
     </div>
   );
 }

@@ -59,13 +59,12 @@ export function ServiceCard({
           <h3 className="text-xl font-bold mb-3">{title}</h3>
           <p className="text-gray-400 text-base mb-6 flex-1">{description}</p>
 
-          {/* Botão para abrir modal */}
           <DialogTrigger asChild>
             <Button
               variant="outline"
               className="w-full border-white/20 text-white hover:bg-white hover:text-black transition-all"
             >
-              Ver Detalhes
+              Ver escopo técnico
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </DialogTrigger>
@@ -179,10 +178,9 @@ export function ServiceCard({
             </div>
           </div>
 
-          {/* Call to action */}
           <div className="pt-4 border-t border-white/10 space-y-3">
             <p className="text-center text-gray-400">
-              Pronto para começar seu projeto de{" "}
+              Pronto para estruturar seu projeto de{" "}
               <strong className="text-white">{title}</strong>?
             </p>
             <div className="flex gap-3">
@@ -190,14 +188,14 @@ export function ServiceCard({
                 onClick={handleContactClick}
                 className="flex-1 bg-white text-black hover:bg-gray-200"
               >
-                Solicitar Orçamento
+                Solicitar diagnóstico
               </Button>
               <Button
                 onClick={handleContactClick}
                 variant="outline"
                 className="flex-1 border-white/20 text-white hover:bg-white hover:text-black"
               >
-                Tirar Dúvidas
+                Falar com especialista
               </Button>
             </div>
           </div>
