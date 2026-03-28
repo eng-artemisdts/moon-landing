@@ -7,14 +7,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import {
   ArrowRight,
   Mail,
   MapPin,
@@ -34,15 +26,11 @@ const clients = [
     id: "cliente-1",
     name: "Cliente 1",
     logo: "https://lyqcsclmauwmzipjiazs.supabase.co/storage/v1/object/public/organization-logos/866d61f4-3e76-45dd-8773-4343f8fe3b28/1765381347600.png",
-    description:
-      "Empresa que confiou na Artemis para estruturar soluções digitais com foco em eficiência operacional e crescimento sustentado.",
   },
   {
     id: "cliente-2",
     name: "Cliente 2",
     logo: "https://lyqcsclmauwmzipjiazs.supabase.co/storage/v1/object/public/organization-logos/d6dfad00-7e50-40da-a44c-150bfc991053/1767902535411.png",
-    description:
-      "Parceria de tecnologia com a Artemis para integração de sistemas, automações e evolução contínua de produto.",
   },
 ];
 
@@ -484,32 +472,20 @@ export default function Home() {
           </p>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {clients.map((client) => (
-              <Dialog key={client.id}>
-                <DialogTrigger asChild>
-                  <button
-                    type="button"
-                    className="glass-panel flex min-h-[96px] w-full items-center justify-center rounded-xl border border-white/15 p-5 transition hover:border-white/30"
-                  >
-                    <Image
-                      src={client.logo}
-                      alt={`Logo ${client.name}`}
-                      width={240}
-                      height={72}
-                      className="h-14 w-auto object-contain opacity-90"
-                    />
-                  </button>
-                </DialogTrigger>
-                <DialogContent className="max-w-md border-white/20 bg-black">
-                  <DialogHeader>
-                    <DialogTitle className="text-xl font-semibold">
-                      {client.name}
-                    </DialogTitle>
-                    <DialogDescription className="pt-2 text-white/75">
-                      {client.description}
-                    </DialogDescription>
-                  </DialogHeader>
-                </DialogContent>
-              </Dialog>
+              <div
+                key={client.id}
+                className="glass-panel flex w-full flex-col gap-4 rounded-xl border border-white/15 p-5"
+              >
+                <div className="flex min-h-[96px] items-center justify-center">
+                  <Image
+                    src={client.logo}
+                    alt={`Logo ${client.name}`}
+                    width={240}
+                    height={72}
+                    className="h-14 w-auto object-contain opacity-90"
+                  />
+                </div>
+              </div>
             ))}
           </div>
         </div>
