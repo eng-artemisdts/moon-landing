@@ -21,7 +21,7 @@ import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
 import { TypewriterEffect } from "@/components/TypewriterEffect";
 import { ChatBot } from "@/components/ChatBot";
-import DarkVeil from "@/components/DarkVeil";
+import PixelBlast from "@/components/PixelBlast";
 
 const INSTAGRAM_URL = "https://instagram.com/artemisdigital.tech";
 
@@ -87,17 +87,26 @@ export default function Home() {
         </nav>
       </header>
 
-      <section className="relative overflow-hidden px-4 pb-24 pt-32">
-        <div className="absolute inset-0">
-          <DarkVeil
-            speed={1.2}
-            hueShift={0}
-            noiseIntensity={0.04}
-            warpAmount={1.2}
-            scanlineIntensity={0.06}
-            scanlineFrequency={120}
+      <section className="relative isolate overflow-hidden px-4 pb-24 pt-32">
+        <div className="absolute inset-0 z-0 min-h-full bg-black">
+          <PixelBlast
+            className="absolute inset-0 z-0 min-h-full w-full"
+            variant="square"
+            pixelSize={4}
+            color="#E8A878"
+            patternScale={2}
+            patternDensity={1.35}
+            speed={0.4}
+            transparent
+            edgeFade={0.35}
+            enableRipples
+            rippleIntensityScale={0.85}
+            rippleThickness={0.1}
+            rippleSpeed={0.3}
+            liquid={false}
+            antialias={false}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/50 to-black" />
+          <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-black/40 via-black/45 to-black" />
         </div>
 
         <div className="container relative z-10 mx-auto">
