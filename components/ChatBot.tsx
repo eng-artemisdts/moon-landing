@@ -189,7 +189,7 @@ export function ChatBot() {
       input.includes("falar") ||
       input.includes("orçamento")
     ) {
-      return "Você pode falar conosco pelo formulário da landing ou via contato@artemis.tech. Se quiser, te direciono para o formulário agora.";
+      return "Você pode falar conosco pelo formulário da landing ou via contato.artemisdts@gmail.com. Se quiser, te direciono para o formulário agora.";
     }
 
     if (input.includes("obrigado") || input.includes("valeu")) {

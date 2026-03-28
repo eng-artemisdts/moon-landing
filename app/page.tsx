@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/accordion";
 import {
   ArrowRight,
+  Instagram,
   Mail,
   MapPin,
   Phone,
@@ -20,6 +21,9 @@ import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
 import { TypewriterEffect } from "@/components/TypewriterEffect";
 import { ChatBot } from "@/components/ChatBot";
+import DarkVeil from "@/components/DarkVeil";
+
+const INSTAGRAM_URL = "https://instagram.com/artemisdigital.tech";
 
 const clients = [
   {
@@ -65,6 +69,12 @@ export default function Home() {
               Valores
             </a>
             <a
+              href="#instagram"
+              className="text-sm font-medium text-white/80 hover:text-white"
+            >
+              Instagram
+            </a>
+            <a
               href="#contato"
               className="text-sm font-medium text-white/80 hover:text-white"
             >
@@ -79,18 +89,26 @@ export default function Home() {
 
       <section className="relative overflow-hidden px-4 pb-24 pt-32">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black" />
+          <DarkVeil
+            speed={1.2}
+            hueShift={0}
+            noiseIntensity={0.04}
+            warpAmount={1.2}
+            scanlineIntensity={0.06}
+            scanlineFrequency={120}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/50 to-black" />
         </div>
 
         <div className="container relative z-10 mx-auto">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
-              <div className="glass-panel mb-6 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm">
-                Software House focada em crescimento previsível
+              <div className="glass-panel mb-6 inline-flex items-center gap-2 rounded-full border border-[#D4682A]/50 px-4 py-2 text-sm shadow-[0_0_20px_rgba(212,104,42,0.25)]">
+                Software e IA para receita e operação
               </div>
               <h1 className="mb-6 text-4xl font-bold leading-tight md:text-6xl">
                 Engenharia de software e IA aplicada para acelerar
-                <span className="bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#F0F0F5] via-[#E8A878] to-[#D4682A] bg-clip-text text-transparent">
                   {" "}
                   vendas e operação
                 </span>
@@ -108,7 +126,7 @@ export default function Home() {
                   className="bg-white text-black hover:bg-gray-200"
                 >
                   <a href="#contato">
-                    Solicitar diagnóstico técnico
+                    Fale conosco
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
@@ -116,7 +134,7 @@ export default function Home() {
                   asChild
                   variant="outline"
                   size="lg"
-                  className="border-white/40 bg-transparent text-white hover:bg-white hover:text-black"
+                  className="border-[#D4682A]/60 bg-transparent text-white hover:bg-[#D4682A] hover:border-[#D4682A] hover:text-white"
                 >
                   <a href="#solucoes">Ver soluções</a>
                 </Button>
@@ -424,6 +442,45 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="instagram" className="px-4 py-20">
+        <div className="container mx-auto">
+          <div className="glass-panel mx-auto max-w-5xl overflow-hidden rounded-3xl border border-white/20 bg-white/[0.02]">
+            <div className="grid gap-8 p-8 md:grid-cols-[1fr_auto] md:items-center md:gap-12 md:p-12">
+              <div>
+                <p className="text-sm uppercase tracking-[0.2em] text-white/60">
+                  Redes sociais
+                </p>
+                <h2 className="mt-3 text-3xl font-bold md:text-4xl">
+                  Acompanhe a Artemis no Instagram
+                </h2>
+                <p className="mt-4 max-w-xl text-lg text-white/70">
+                  Cases, bastidores de produto e conteúdo sobre software, IA e
+                  operação comercial — direto do nosso dia a dia.
+                </p>
+                <p className="mt-4 font-medium text-white/90">
+                  <span className="text-white/50">@</span>artemisdigital.tech
+                </p>
+              </div>
+              <div className="flex flex-col items-stretch gap-4 sm:flex-row md:flex-col lg:min-w-[220px]">
+                <a
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-br from-[#f09433] via-[#dc2743] to-[#bc1888] px-8 py-5 text-base font-semibold text-white shadow-[0_12px_40px_rgba(225,48,108,0.35)] transition hover:brightness-110 hover:shadow-[0_16px_48px_rgba(225,48,108,0.45)]"
+                >
+                  <Instagram className="h-6 w-6 shrink-0" aria-hidden />
+                  Seguir no Instagram
+                  <ArrowRight className="h-4 w-4 shrink-0 opacity-80 transition group-hover:translate-x-0.5" />
+                </a>
+                <p className="text-center text-xs text-white/45 md:text-left">
+                  Abre o perfil oficial em uma nova aba.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="contato" className="bg-white/[0.03] px-4 py-20">
         <div className="container mx-auto">
           <div className="mx-auto max-w-4xl">
@@ -445,12 +502,14 @@ export default function Home() {
                 <div className="glass-panel rounded-xl border border-white/15 p-6">
                   <Mail className="mb-3 h-8 w-8" />
                   <h3 className="mb-2 font-semibold">Email</h3>
-                  <p className="text-sm text-white/70">contato@artemis.tech</p>
+                  <p className="text-sm text-white/70">
+                    contato.artemisdts@gmail.com
+                  </p>
                 </div>
                 <div className="glass-panel rounded-xl border border-white/15 p-6">
                   <Phone className="mb-3 h-8 w-8" />
                   <h3 className="mb-2 font-semibold">Telefone</h3>
-                  <p className="text-sm text-white/70">+55 (31) 98293-6068</p>
+                  <p className="text-sm text-white/70">+55 (31) 98833-3074</p>
                 </div>
                 <div className="glass-panel rounded-xl border border-white/15 p-6">
                   <MapPin className="mb-3 h-8 w-8" />
@@ -491,45 +550,64 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="border-t border-white/10 px-4 py-12">
+      <footer className="border-t border-white/10 px-4 pt-14 pb-8">
         <div className="container mx-auto">
-          <div className="grid gap-8 md:grid-cols-3">
-            <div>
-              <div className="mb-4 flex items-center gap-3">
-                <Image
-                  src="/assets/logo-reduced.svg"
-                  alt="Artemis Digital"
-                  width={28}
-                  height={28}
-                />
-                <span className="font-semibold">Artemis Digital Solutions</span>
-              </div>
-              <p className="text-sm text-white/65">
+          <div className="grid gap-12 md:grid-cols-[1fr_auto_auto]">
+            <div className="flex flex-col gap-4">
+              <Image
+                src="/assets/logo-full-white.svg"
+                alt="Artemis Digital Solutions"
+                width={160}
+                height={36}
+                className="opacity-90"
+              />
+              <p className="max-w-xs text-sm leading-relaxed text-white/50">
                 Software house para empresas que precisam transformar tecnologia
                 em crescimento previsível.
               </p>
             </div>
+
             <div>
-              <h4 className="mb-3 font-semibold">Foco de atuação</h4>
-              <ul className="space-y-2 text-sm text-white/65">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-white/40">
+                Soluções
+              </p>
+              <ul className="space-y-2.5 text-sm text-white/65">
                 <li>IA e automações</li>
                 <li>Software sob medida</li>
                 <li>E-commerce</li>
-                <li>Produto Nebula (CRM com IA)</li>
+                <li>Nebula — CRM com IA</li>
               </ul>
             </div>
+
             <div>
-              <h4 className="mb-3 font-semibold">Contato</h4>
-              <ul className="space-y-2 text-sm text-white/65">
-                <li>contato@artemis.tech</li>
-                <li>+55 (31) 98293-6068</li>
-                <li>Atendimento online</li>
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-white/40">
+                Contato
+              </p>
+              <ul className="space-y-2.5 text-sm text-white/65">
+                <li>contato.artemisdts@gmail.com</li>
+                <li>+55 (31) 98833-3074</li>
+                <li>Belo Horizonte, MG</li>
+                <li>
+                  <a
+                    href={INSTAGRAM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-white/65 transition hover:text-white"
+                  >
+                    <Instagram className="h-4 w-4" aria-hidden />
+                    @artemisdigital.tech
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
-          <div className="mt-10 border-t border-white/10 pt-8 text-center text-sm text-white/55">
-            &copy; {new Date().getFullYear()} Artemis Digital Solutions. Todos
-            os direitos reservados.
+
+          <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 sm:flex-row">
+            <p className="text-xs text-white/35">
+              &copy; {new Date().getFullYear()} Artemis Digital Solutions. Todos
+              os direitos reservados.
+            </p>
+            <p className="text-xs text-white/25">Belo Horizonte · Brasil</p>
           </div>
         </div>
       </footer>

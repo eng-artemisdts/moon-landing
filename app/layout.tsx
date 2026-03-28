@@ -14,11 +14,9 @@ export const metadata: Metadata = {
   description:
     "Software house especializada em IA aplicada, automações, e-commerce e software sob medida. Conheça também o Nebula, CRM com IA integrado ao WhatsApp.",
   icons: {
-    icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-    ],
-    shortcut: '/favicon.svg',
-    apple: '/favicon.svg',
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
   },
 };
 
@@ -48,4 +46,3 @@ export default function RootLayout({
     </html>
   );
 }
-
